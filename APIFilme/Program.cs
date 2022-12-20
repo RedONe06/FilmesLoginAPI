@@ -15,6 +15,7 @@ builder.Services.AddDbContext<FilmeDbContext>(opts => opts
 .UseMySql(builder.Configuration.GetConnectionString("FilmeConnection"), new MySqlServerVersion(new Version(8, 0))));
 
 builder.Services.AddScoped<CinemaService, CinemaService>();
+builder.Services.AddScoped<FilmeService, FilmeService>();
 
 var app = builder.Build();
 
