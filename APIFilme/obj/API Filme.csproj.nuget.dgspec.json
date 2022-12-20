@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Andriele\\Downloads\\Alura\\API Login\\teste\\API Filme.csproj": {}
+    "C:\\Users\\Andriele\\Downloads\\Alura\\API Login\\APIFilme\\API Filme.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Andriele\\Downloads\\Alura\\API Login\\teste\\API Filme.csproj": {
+    "C:\\Users\\Andriele\\Downloads\\Alura\\API Login\\APIFilme\\API Filme.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andriele\\Downloads\\Alura\\API Login\\teste\\API Filme.csproj",
+        "projectUniqueName": "C:\\Users\\Andriele\\Downloads\\Alura\\API Login\\APIFilme\\API Filme.csproj",
         "projectName": "API Filme",
-        "projectPath": "C:\\Users\\Andriele\\Downloads\\Alura\\API Login\\teste\\API Filme.csproj",
+        "projectPath": "C:\\Users\\Andriele\\Downloads\\Alura\\API Login\\APIFilme\\API Filme.csproj",
         "packagesPath": "C:\\Users\\Andriele\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andriele\\Downloads\\Alura\\API Login\\teste\\obj\\",
+        "outputPath": "C:\\Users\\Andriele\\Downloads\\Alura\\API Login\\APIFilme\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Andriele\\AppData\\Roaming\\NuGet\\NuGet.Config",
