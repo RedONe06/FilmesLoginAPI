@@ -9,8 +9,8 @@ namespace API_Filme.Data.DTOs.Cinema
         [Key]
         public int Id { get; set; }
         public string Nome { get; set; }
-        public Endereco Endereco { get; set; }
-        public Gerente Gerente { get; set; }
+        public Models.Endereco Endereco { get; set; }
+        public Models.Gerente Gerente { get; set; }
 
     }
 }

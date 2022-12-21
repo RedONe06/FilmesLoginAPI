@@ -1,5 +1,6 @@
 ﻿using API_Filme.Data.DTOs.Endereco;
 using API_Filme.Services;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_Filme.Controllers
@@ -16,42 +17,58 @@ namespace API_Filme.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdicionarEndereco([FromBody] CreateEnderecoDTO enderecoDto)
+        public IActionResult AdicionarEndereco([FromBody] CreateEnderecoDTO enderecoDTO)
         {
-            ReadEnderecoDTO readDto = _enderecoService.AdicionarEndereco(enderecoDto);
-            return CreatedAtAction(nameof(RecuperaEnderecosPorId), new { Id = readDto.Id }, readDto);
+            ReadEnderecoDTO readDTO = _enderecoService.AdicionarEndereco(enderecoDTO);
+            return CreatedAtAction(nameof(RecuperarEnderecosPorId), new { id = readDTO.Id }, readDTO);
         }
 
         [HttpGet]
-        public IActionResult RecuperaEnderecos()
+        public IActionResult RecuperarEnderecos()
         {
-            List<ReadEnderecoDto> readDto = _enderecoService.RecuperaEnderecos();
-            if (readDto == null) return NotFound();
+            List<ReadEnderecoDTO> readDto = _enderecoService.RecuperarEnderecos();
+
+            if (readDto == null)
+            {
+                return NotFound();
+            }
             return Ok(readDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult RecuperaEnderecosPorId(int id)
+        public IActionResult RecuperarEnderecosPorId(int id)
         {
-            ReadEnderecoDto readDto = _enderecoService.RecuperaEnderecosPorId(id);
-            if (readDto == null) return NotFound();
-            return Ok(readDto);
+            ReadEnderecoDTO readDTO = _enderecoService.RecuperarEnderecosPorId(id);
+
+            if (readDTO == null)
+            {
+                return NotFound();
+            }
+            return Ok(readDTO);
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaEndereco(int id, [FromBody] UpdateEnderecoDto enderecoDto)
+        public IActionResult AtualizarEndereco(int id, [FromBody] UpdateEnderecoDTO enderecoDTO)
         {
-            Result resultado = _enderecoService.AtualizaEndereco(id, enderecoDto);
-            if (resultado.IsFailed) return NotFound();
+            Result resultado = _enderecoService.AtualizarEndereco(id, enderecoDTO);
+
+            if (resultado.IsFailed)
+            {
+                return NotFound();
+            }
             return NoContent();
         }
 
 
         [HttpDelete("{id}")]
-        public IActionResult DeletaEndereco(int id)
+        public IActionResult DeletarEndereco(int id)
         {
-            Result resultado = _enderecoService.DeletaEndereco(id);
-            if (resultado.IsFailed) return NotFound();
+            Result resultado = _enderecoService.DeletarEndereco(id);
+
+            if (resultado.IsFailed)
+            {
+                return NotFound();
+            }
             return NoContent();
         }
     }

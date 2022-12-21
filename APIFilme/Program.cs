@@ -16,6 +16,9 @@ builder.Services.AddDbContext<FilmeDbContext>(opts => opts
 
 builder.Services.AddScoped<CinemaService, CinemaService>();
 builder.Services.AddScoped<FilmeService, FilmeService>();
+builder.Services.AddScoped<EnderecoService, EnderecoService>();
+builder.Services.AddScoped<GerenteService, GerenteService>();
+
 
 var app = builder.Build();
 
