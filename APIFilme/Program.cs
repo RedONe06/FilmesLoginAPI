@@ -2,6 +2,7 @@ using API_Filme.Data;
 using API_Filme.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using API_Gerente.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,7 @@ builder.Services.AddScoped<CinemaService, CinemaService>();
 builder.Services.AddScoped<FilmeService, FilmeService>();
 builder.Services.AddScoped<EnderecoService, EnderecoService>();
 builder.Services.AddScoped<GerenteService, GerenteService>();
-
+builder.Services.AddScoped<SessaoService, SessaoService>();
 
 var app = builder.Build();
 

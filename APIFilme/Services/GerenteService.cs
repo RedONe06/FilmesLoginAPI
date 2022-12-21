@@ -28,7 +28,7 @@ namespace API_Gerente.Services
 
         public List<ReadGerenteDTO> RecuperarGerentes(int? classificacaoEtaria)
         {
-            List<Gerente> gerentes= _context.Gerentes.ToList();
+            List<Gerente> gerentes = _context.Gerentes.ToList();
 
             if (gerentes != null)
             {

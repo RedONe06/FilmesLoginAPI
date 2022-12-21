@@ -3,6 +3,7 @@ using System;
 using API_Filme.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API_Filme.Migrations
 {
     [DbContext(typeof(FilmeDbContext))]
-    partial class FilmeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221221131847_Adicionando estrutura de controllers")]
+    partial class Adicionandoestruturadecontrollers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,5 +1,6 @@
 ﻿using API_Filme.Data.DTOs.Gerente;
 using API_Filme.Services;
+using API_Gerente.Services;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
