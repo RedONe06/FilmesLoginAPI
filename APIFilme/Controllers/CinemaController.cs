@@ -21,11 +21,15 @@ namespace API_Filme.Controllers
         public IActionResult AdicionarCinema([FromBody] CreateCinemaDTO cinemaDTO)
         {
             ReadCinemaDTO readDTO = _cinemaService.AdicionarCinema(cinemaDTO);
-            return CreatedAtAction(nameof(RecuperarCinemaPorId), new { id = readDTO.Id }, readDTO);
+            if(readDTO != null)
+            {
+                return CreatedAtAction(nameof(RecuperarCinemaPorId), new { id = readDTO.Id }, readDTO);
+            }
+            return BadRequest();
         }
 
         [HttpGet]
-        public IActionResult RecuperarCinemas([FromQuery] string nomeDoFilme)
+        public IActionResult RecuperarCinemas([FromQuery] string? nomeDoFilme)
         {
             List<ReadCinemaDTO> readDTO = _cinemaService.RecuperarCinemas(nomeDoFilme);
 

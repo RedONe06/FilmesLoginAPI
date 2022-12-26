@@ -22,16 +22,22 @@ namespace API_Filme.Services
         public ReadCinemaDTO AdicionarCinema(CreateCinemaDTO cinemaDTO)
         {
             Cinema cinema = _mapper.Map<Cinema>(cinemaDTO);
-            _context.Cinemas.Add(cinema);
-            _context.SaveChanges();
-            return _mapper.Map<ReadCinemaDTO>(cinema);
+            bool temNoBancoFK = ConferirBanco(cinemaDTO.EnderecoFK, cinemaDTO.GerenteFK);
+
+            if (!temNoBancoFK)
+            {
+                _context.Cinemas.Add(cinema);
+                _context.SaveChanges();
+                return _mapper.Map<ReadCinemaDTO>(cinema);
+            }
+            return null;
         }
 
         public List<ReadCinemaDTO> RecuperarCinemas(string nomeDoFilme)
         {
             List<Cinema> cinemas = _context.Cinemas.ToList();
 
-            if(!cinemas.IsNullOrEmpty())
+            if(cinemas != null)
             {
                 if (!string.IsNullOrEmpty(nomeDoFilme))
                 {
@@ -63,14 +69,19 @@ namespace API_Filme.Services
         public Result AtualizarCinema(int id, UpdateCinemaDTO cinemaDTO)
         {
             Cinema cinema = GetCinema(id);
-
+            bool temNoBancoFK = ConferirBanco(cinemaDTO.EnderecoFK, cinemaDTO.GerenteFK);
+            
             if (cinema != null)
             {
-                _mapper.Map(cinemaDTO, cinema);
-                _context.SaveChanges();
-                return Result.Ok();
+                if (!temNoBancoFK)
+                {
+                    _mapper.Map(cinemaDTO, cinema);
+                    _context.SaveChanges();
+                    return Result.Ok();
+                }
+                return Result.Fail("Foreign Key já relacionada.");
             }
-            return Result.Fail("Não foi possível atualizar.");
+            return Result.Fail("Id não encontrado.");
         }
 
         public Result DeletarCinema(int id)
@@ -83,12 +94,16 @@ namespace API_Filme.Services
                 _context.SaveChanges();
                 return Result.Ok();
             }
-            return Result.Fail("Não foi possível atualizar.");
+            return Result.Fail("Não foi possível apagar.");
         }
 
         private Cinema GetCinema(int id)
         {
             return _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
+        }
+        private bool ConferirBanco(int enderecoFK, int gerenteFK)
+        {
+            return _context.Cinemas.Any(cinema => cinema.EnderecoFK == enderecoFK || cinema.GerenteFK == gerenteFK);
         }
     }
 }

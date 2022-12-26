@@ -1,4 +1,5 @@
 ﻿using API_Filme.Data;
+using API_Filme.Data.DTOs.Cinema;
 using API_Filme.Data.DTOs.Sessao;
 using API_Filme.Models;
 using AutoMapper;
@@ -18,12 +19,19 @@ namespace API_Filme.Services
             _mapper = mapper;
             _context = context;
         }
+
         public ReadSessaoDTO AdicionarSessao(CreateSessaoDTO sessaoDTO)
         {
             Sessao sessao = _mapper.Map<Sessao>(sessaoDTO);
-            _context.Sessoes.Add(sessao);
-            _context.SaveChanges();
-            return _mapper.Map<ReadSessaoDTO>(sessao);
+            bool temNoBancoFK = ConferirBanco(sessaoDTO.CinemaFK, sessaoDTO.FilmeFK);
+
+            if (!temNoBancoFK)
+            {
+                _context.Sessoes.Add(sessao);
+                _context.SaveChanges();
+                return _mapper.Map<ReadSessaoDTO>(sessao);
+            }
+            return null;
         }
 
         public List<ReadSessaoDTO> RecuperarSessoes()
@@ -77,6 +85,11 @@ namespace API_Filme.Services
         private Sessao GetSessao(int id)
         {
             return _context.Sessoes.FirstOrDefault(sessao => sessao.Id == id);
+        }
+
+        private bool ConferirBanco(int cinemaFK, int filmeFK)
+        {
+            return _context.Sessoes.Any(sessao => sessao.CinemaFK == cinemaFK || sessao.FilmeFK == filmeFK);
         }
     }
 }

@@ -4,8 +4,8 @@ namespace API_Filme.Data.DTOs.Sessao
 {
     public class UpdateSessaoDTO
     {
-        public int CinemaId { get; set; }
-        public int FilmeId { get; set; }
+        public int CinemaFK { get; set; }
+        public int FilmeFK { get; set; }
         public DateTime HorarioDeEncerramento { get; set; }
     }
 }

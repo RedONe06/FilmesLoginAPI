@@ -31,9 +31,12 @@ namespace API_Filme.Services
 
             if (classificacaoEtaria != null)
             {
-                filmes = _context.Filmes.Where(filme => filme.ClassificacaoEtaria == classificacaoEtaria).ToList();
+                filmes = _context.Filmes.Where(filme => filme.ClassificacaoEtaria <= classificacaoEtaria).ToList();
             }
-            filmes = _context.Filmes.ToList();
+            else{
+                filmes = _context.Filmes.ToList();
+            }
+            
 
             if (filmes != null)
             {
@@ -85,7 +88,5 @@ namespace API_Filme.Services
         {
             return _context.Filmes.FirstOrDefault(filme => filme.Id == id);
         }
-
-        
     }
 }

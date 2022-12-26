@@ -59,7 +59,6 @@ namespace API_Filme.Controllers
             return NoContent();
         }
 
-
         [HttpDelete("{id}")]
         public IActionResult DeletarEndereco(int id)
         {

@@ -4,7 +4,6 @@ namespace API_Filme.Data.DTOs.Filme
 {
     public class CreateFilmeDTO
     {
-        // TODO Colocar mensagens de required com mensagem de erro;
         [Required(ErrorMessage = "O campo título é obrigatório")]
         public string Titulo { get; set; }
 

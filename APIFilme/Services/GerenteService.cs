@@ -80,6 +80,5 @@ namespace API_Gerente.Services
         {
             return _context.Gerentes.FirstOrDefault(gerente => gerente.Id == id);
         }
-
     }
 }

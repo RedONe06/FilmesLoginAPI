@@ -4,6 +4,7 @@ namespace API_Filme.Data.DTOs.Filme
 {
     public class ReadFilmeDTO
     {
+        [Key]
         public int Id { get; set; }
         public string Titulo { get; set; }
         public string Diretor { get; set; }
