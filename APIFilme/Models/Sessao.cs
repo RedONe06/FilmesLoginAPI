@@ -11,5 +11,6 @@ namespace API_Filme.Models
         public int FilmeFK { get; set; }
         public int CinemaFK { get; set; }
         public DateTime HorarioDeEncerramento { get; set; }
+        public DateTime HorarioDeInicio { get; set; }
     }
 }

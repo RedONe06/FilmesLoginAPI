@@ -23,6 +23,7 @@ namespace API_Filme.Services
         public ReadSessaoDTO AdicionarSessao(CreateSessaoDTO sessaoDTO)
         {
             Sessao sessao = _mapper.Map<Sessao>(sessaoDTO);
+            sessao.HorarioDeInicio = DateTime.UtcNow;
             bool temNoBancoFK = ConferirBanco(sessaoDTO.CinemaFK, sessaoDTO.FilmeFK);
 
             if (!temNoBancoFK)
@@ -59,14 +60,19 @@ namespace API_Filme.Services
         public Result AtualizarSessao(int id, UpdateSessaoDTO sessaoDTO)
         {
             Sessao sessao = GetSessao(id);
+            bool temNoBancoFK = ConferirBanco(sessaoDTO.CinemaFK, sessaoDTO.FilmeFK, id);
 
-            if (sessao != null)
+            if (!temNoBancoFK)
             {
-                _mapper.Map(sessaoDTO, sessao);
-                _context.SaveChanges();
-                return Result.Ok();
+                if (sessao != null)
+                {
+                    _mapper.Map(sessaoDTO, sessao);
+                    _context.SaveChanges();
+                    return Result.Ok();
+                }
+                return Result.Fail("A sessão não foi encontrada.");
             }
-            return Result.Fail("Não foi possível atualizar.");
+            return Result.Fail("FK já existente.");
         }
 
         public Result DeletarSessao(int id)
@@ -90,6 +96,13 @@ namespace API_Filme.Services
         private bool ConferirBanco(int cinemaFK, int filmeFK)
         {
             return _context.Sessoes.Any(sessao => sessao.CinemaFK == cinemaFK || sessao.FilmeFK == filmeFK);
+        }
+        private bool ConferirBanco(int cinemaFK, int filmeFK, int id)
+        {
+            List<Sessao> lista = _context.Sessoes.ToList();
+            lista.Remove(lista.Find(sessao => sessao.Id == id));
+            bool temNoBanco = lista.Any(sessao => sessao.CinemaFK == cinemaFK || sessao.FilmeFK == filmeFK);
+            return temNoBanco;
         }
     }
 }

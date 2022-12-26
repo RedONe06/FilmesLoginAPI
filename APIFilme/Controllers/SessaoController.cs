@@ -20,11 +20,15 @@ namespace API_Sessao.Controllers
         public IActionResult AdicionarSessao([FromBody] CreateSessaoDTO sessaoDTO)
         {
             ReadSessaoDTO readDTO = _sessaoService.AdicionarSessao(sessaoDTO);
-            return CreatedAtAction(nameof(RecuperarSessaoPorId), new { id = readDTO.Id }, readDTO);
+            if(readDTO != null)
+            {
+                return CreatedAtAction(nameof(RecuperarSessaoPorId), new { id = readDTO.Id }, readDTO);
+            }
+            return BadRequest();
         }
 
         [HttpGet]
-        public IActionResult RecuperarSessaos()
+        public IActionResult RecuperarSessoes()
         {
             List<ReadSessaoDTO> readDTO = _sessaoService.RecuperarSessoes();
 

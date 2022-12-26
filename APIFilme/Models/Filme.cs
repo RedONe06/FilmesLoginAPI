@@ -8,9 +8,16 @@ namespace API_Filme.Models
         [Key]
         public int Id { get; set; }
         public string Titulo { get; set; }
+        
+        [JsonIgnore]
         public int Duracao { get; set; }
+        
+        [JsonIgnore]
         public string Diretor { get; set; }
+        
+        [JsonIgnore]
         public string Genero { get; set; }
+
         public int ClassificacaoEtaria { get; set; }
 
         [JsonIgnore]
