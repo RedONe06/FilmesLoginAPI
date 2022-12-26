@@ -1,0 +1,2371 @@
+{
+	"info": {
+		"_postman_id": "44e2f807-3019-4ad4-b22f-705afee3d146",
+		"name": "API FIlmes",
+		"description": "# Introdução\n\nConjunto de API's composto por uma API com um sistema de cadastro e visualização de sessões de cinema e uma API de autenticação e login de usuários que concede acesso ao primeiro serviço.\n\n# Overview\n\nThings that the developers should know about\n\n# Authentication\n\nWhat is the preferred way of using the API?\n\n# Error Codes\n\nWhat errors and status codes can a user expect?",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25007947"
+	},
+	"item": [
+		{
+			"name": "Autenticação",
+			"item": [
+				{
+					"name": "Cadastro",
+					"item": [
+						{
+							"name": "Cadastrar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Username\": \"Username\",\r\n    \"Email\": \"email@email.com\",\r\n    \"Password\": \"Senha123!\",\r\n    \"RePassword\": \"Senha123!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_autenticacao_URL}}/cadastro",
+									"host": [
+										"{{sistema_de_autenticacao_URL}}"
+									],
+									"path": [
+										"cadastro"
+									]
+								},
+								"description": "Após efetuar o cadastro, um link com o código de ativação será enviado ao email do usuário. Este link deve ser passado por GET para que a conta seja ativada."
+							},
+							"response": [
+								{
+									"name": "Cadastrado com sucesso",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Username\": \"Username\",\r\n    \"Email\": \"email@email.com\",\r\n    \"Password\": \"Senha123!\",\r\n    \"RePassword\": \"Senha123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{sistema_de_autenticacao_URL}}/cadastro",
+											"host": [
+												"{{sistema_de_autenticacao_URL}}"
+											],
+											"path": [
+												"cadastro"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 26 Dec 2022 13:20:44 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"CfDJ8M0dojm2QO1Jo91wK91bLwsN0nNKJk27XQiIq%2b0V6UfV%2bq0uMYUdwnDOOoyMnVqZzyS2oiivsG5E4KYPjKu6UvqJBSKWOdRG%2bflPVkoW02hbcN4YxL4KXcmYpttg24eKSCizeXeW6DShxyKYH1vlma%2boMiZhW4jfxJVZJrmBfdOWu2Sbv%2bXv0uDCNdx9Xo3MVJCP%2fQ0GFwzLFkgcKdpduS8%3d\",\n    \"metadata\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "Ativar",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:6000/ativa?Id=1&CodigoDeAtivacao=CfDJ8M0dojm2QO1Jo91wK91bLwsN0nNKJk27XQiIq%2b0V6UfV%2bq0uMYUdwnDOOoyMnVqZzyS2oiivsG5E4KYPjKu6UvqJBSKWOdRG%2bflPVkoW02hbcN4YxL4KXcmYpttg24eKSCizeXeW6DShxyKYH1vlma%2boMiZhW4jfxJVZJrmBfdOWu2Sbv%2bXv0uDCNdx9Xo3MVJCP%2fQ0GFwzLFkgcKdpduS8%3d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6000",
+									"path": [
+										"ativa"
+									],
+									"query": [
+										{
+											"key": "Id",
+											"value": "1",
+											"description": "Id da conta que deve ser ativada;\n"
+										},
+										{
+											"key": "CodigoDeAtivacao",
+											"value": "CfDJ8M0dojm2QO1Jo91wK91bLwsN0nNKJk27XQiIq%2b0V6UfV%2bq0uMYUdwnDOOoyMnVqZzyS2oiivsG5E4KYPjKu6UvqJBSKWOdRG%2bflPVkoW02hbcN4YxL4KXcmYpttg24eKSCizeXeW6DShxyKYH1vlma%2boMiZhW4jfxJVZJrmBfdOWu2Sbv%2bXv0uDCNdx9Xo3MVJCP%2fQ0GFwzLFkgcKdpduS8%3d",
+											"description": "Código de ativação gerado ao cadastrar um novo usuáro"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Username\": \"Username\",\r\n    \"Password\": \"Senha123!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_autenticacao_URL}}/login",
+									"host": [
+										"{{sistema_de_autenticacao_URL}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A mensagem de resposta contém um token (JWT) com as informações da sessão realizada pelo login;"
+							},
+							"response": [
+								{
+									"name": "Login Realizado",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Username\": \"Username\",\r\n    \"Password\": \"Senha123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{sistema_de_autenticacao_URL}}/login",
+											"host": [
+												"{{sistema_de_autenticacao_URL}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 26 Dec 2022 13:38:52 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache,no-store"
+										},
+										{
+											"key": "Expires",
+											"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": ".AspNetCore.Identity.Application=CfDJ8M0dojm2QO1Jo91wK91bLwtQ-n527U6CAH_xy7TGmB4Olk6U9N7xK0aoWCnbOVpxPHo6hRQcKZDs6faVHsFJ0zcw6vv927fqrMfS1tfD7JoV7Vyrxke5epiFbn-i2VI6etCvIbZjw9gU-otBqrb8R1lArHXWfLGcgG7jhgziSNyOU8oK5dzkrG1F8-8DAbhKH5vDn0eQj7mI4FKrCzN9IKTfy0xhMesBZiqLbirCHnoc59H_WA-CW4l3TeAvVjr_H_oQfKJci-VVhSDyLdBqFlzb-Ool8RX-AwvhO-MyKfdHS3gdkR56DDMLLlfPEJrV8oPUHYCM6Ziqc347lyBGQ8Fjjb3E4s8Zme0kT97kLe6uujd5LZ3gg6bE0wcSrUPZWLksAngaGmhg7LU3Y4YmsBHQ0w6x95Qb8T9rBWAnj3LvAeVCaPi6R3TZysMBNWKEmLYc39P0tRMg_ub4MyokeR2Mq6uIRVoF4OZ4DqKWByx9vVx-M3fq6rT1UpVgfV5DQkEh3muaMntJUVBHQ9NRAh4HiyBuoCx1HiwGgHxfy7xEN9criPF568DNR_uSXkxBxQbhGPyOUmH3PltpQoY3rDAzwI_R3KleyyI2r_9U-bDFQZ0mKob-ehwOZCTeTadN9GqYzjP4FuQw9Ch1kk4UvqhFAdmH9QUupVk5iEAyaGKG5H0Eqt8YBp6u3pkDWjlG8A; path=/; secure; samesite=lax; httponly"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlVzZXJuYW1lIiwiaWQiOiIxMDAwMDEiLCJleHAiOjE2NzIwNjU1MzJ9.4dm2w6iIlMbigJkBOGEollOCyOL5QcSXiqDQz6IWW0k\",\n    \"metadata\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "Solicitar reset",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Email\": \"email@email.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_autenticacao_URL}}/solicita-reset",
+									"host": [
+										"{{sistema_de_autenticacao_URL}}"
+									],
+									"path": [
+										"solicita-reset"
+									]
+								},
+								"description": "Um token de reset será enviado para o email informado."
+							},
+							"response": [
+								{
+									"name": "Solicitação realizada",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Email\": \"email@email.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{sistema_de_autenticacao_URL}}/solicita-reset",
+											"host": [
+												"{{sistema_de_autenticacao_URL}}"
+											],
+											"path": [
+												"solicita-reset"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 26 Dec 2022 13:43:54 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Um Token de reset foi enviado para o email solicitado\",\n    \"metadata\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "Executar reset",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Email\": \"email@email.com\",\r\n    \"Token\": \"CfDJ8M0dojm2QO1Jo91wK91bLwuTukdaA5BNDZ+5oM1XgUksGBPpH/eqPM5bbfxLLa/mTKswT2kvWdYzVUdf6xYFMHM3H53oBloCX9IoSF4gxNj3Sm+KgStZXD7x9QGp0HbypAV8OIhKGxK8LHCYEfgoLBFstuh6Fv4k0KBOANkRmzpGg/0jDgXPor50XLzdHuAJCw==\",\r\n    \"NewPassword\": \"Senha1234!\",\r\n    \"RePassword\": \"Senha1234!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_autenticacao_URL}}/executa-reset",
+									"host": [
+										"{{sistema_de_autenticacao_URL}}"
+									],
+									"path": [
+										"executa-reset"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Reset realizado",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Email\": \"email@email.com\",\r\n    \"Token\": \"CfDJ8M0dojm2QO1Jo91wK91bLwuTukdaA5BNDZ+5oM1XgUksGBPpH/eqPM5bbfxLLa/mTKswT2kvWdYzVUdf6xYFMHM3H53oBloCX9IoSF4gxNj3Sm+KgStZXD7x9QGp0HbypAV8OIhKGxK8LHCYEfgoLBFstuh6Fv4k0KBOANkRmzpGg/0jDgXPor50XLzdHuAJCw==\",\r\n    \"NewPassword\": \"Senha1234!\",\r\n    \"RePassword\": \"Senha1234!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{sistema_de_autenticacao_URL}}/executa-reset",
+											"host": [
+												"{{sistema_de_autenticacao_URL}}"
+											],
+											"path": [
+												"executa-reset"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 26 Dec 2022 13:47:01 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Resetado com sucesso. Utilize a sua nova senha no próximo acesso!\",\n    \"metadata\": {}\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"item": [
+						{
+							"name": "Logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_autenticacao_URL}}/logout",
+									"host": [
+										"{{sistema_de_autenticacao_URL}}"
+									],
+									"path": [
+										"logout"
+									]
+								},
+								"description": "Termina a sessão do atual usuário logado."
+							},
+							"response": [
+								{
+									"name": "Deslogado com sucesso",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{sistema_de_autenticacao_URL}}/logout",
+											"host": [
+												"{{sistema_de_autenticacao_URL}}"
+											],
+											"path": [
+												"logout"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 26 Dec 2022 13:49:13 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache,no-store"
+										},
+										{
+											"key": "Expires",
+											"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": ".AspNetCore.Identity.Application=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; secure; samesite=lax; httponly"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "Identity.External=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; secure; samesite=lax; httponly"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "Identity.TwoFactorUserId=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; secure; samesite=lax; httponly"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Deslogado com sucesso\",\n    \"metadata\": {}\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sistema de cinemas",
+			"item": [
+				{
+					"name": "Filme",
+					"item": [
+						{
+							"name": "Criar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Titulo\": \"Título do filme\",\r\n    \"Duracao\": 300,\r\n    \"ClassificacaoEtaria\": 12,\r\n    \"Diretor\": \"Diretor do filme\",\r\n    \"Genero\": \"Genero\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/filme",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"filme"
+									]
+								},
+								"description": "| **Campo** | **Descrição** |\n| --- | --- |\n| `Duracao` | Duração do filme em uma escala de 1-600; |\n| `Genero` | Gênero do filme; |\n| `Titulo` | Título do filme; |\n| `ClassificacaoEtaria` | Classificação etária do filme, deve ser um valor inteiro; |\n| `Diretor` | Diretor do filme |"
+							},
+							"response": [
+								{
+									"name": "Default",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Titulo\": \"Título do filme\",\r\n    \"Duracao\": 300,\r\n    \"ClassificacaoEtaria\": 12,\r\n    \"Diretor\": \"Diretor do filme\",\r\n    \"Genero\": \"Genero\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:5000/filme",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Criado com sucesso",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Titulo\": \"Título do filme\",\r\n    \"Duracao\": 300,\r\n    \"ClassificacaoEtaria\": 12,\r\n    \"Diretor\": \"Diretor do filme\",\r\n    \"Genero\": \"Genero\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:5000/filme",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:43:49 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Location",
+											"value": "https://localhost:5001/Filme/7"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 7,\n    \"titulo\": \"Título do filme\",\n    \"diretor\": \"Diretor do filme\",\n    \"genero\": \"Genero\",\n    \"duracao\": 300,\n    \"classificacaoEtaria\": 12\n}"
+								}
+							]
+						},
+						{
+							"name": "Resgatar",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/filme",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"filme"
+									],
+									"query": [
+										{
+											"key": "ClassificacaoEtaria",
+											"value": "{{classificacaoEtaria}}",
+											"description": "Faixa etária",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Resgatado com sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:5000/filme",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme"
+											],
+											"query": [
+												{
+													"key": "ClassificacaoEtaria",
+													"value": "{{classificacaoEtaria}}",
+													"description": "Faixa etária",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:35:39 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 4,\n        \"titulo\": \"StarWars\",\n        \"diretor\": \"Amanda\",\n        \"genero\": \"Scifi\",\n        \"duracao\": 300,\n        \"classificacaoEtaria\": 18\n    },\n    {\n        \"id\": 5,\n        \"titulo\": \"A culpa é das estrelas\",\n        \"diretor\": \"Andriele\",\n        \"genero\": \"Romance\",\n        \"duracao\": 300,\n        \"classificacaoEtaria\": 14\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Resgatar por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/filme/{{id}}",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"filme",
+										"{{id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Resgatado com sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:5000/filme/5",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:47:09 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 5,\n    \"titulo\": \"A culpa é das estrelas\",\n    \"diretor\": \"Andriele\",\n    \"genero\": \"Romance\",\n    \"duracao\": 300,\n    \"classificacaoEtaria\": 14\n}"
+								}
+							]
+						},
+						{
+							"name": "Deletar",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/filme/2",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"filme",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Deletado com sucesso",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:5000/filme/5",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme",
+												"5"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:35:11 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Atualizar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Titulo\": \"Novo título\",\r\n    \"Diretor\": \"Novo diretor\",\r\n    \"Genero\": \"Novo gênero\",\r\n    \"Duracao\": 345,\r\n    \"ClassificacaoEtaria\": 13\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/filme/{{id}}",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"filme",
+										"{{id}}"
+									]
+								},
+								"description": "| **Campo** | **Descrição** |\n| --- | --- |\n| `Duracao` | Duração do filme em uma escala de 1-600; |\n| `Genero` | Gênero do filme; |\n| `Titulo` | Título do filme; |\n| `ClassificacaoEtaria` | Classificação etária do filme, deve ser um valor inteiro; |\n| `Diretor` | Diretor do filme |"
+							},
+							"response": [
+								{
+									"name": "Atualizado com sucesso",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Titulo\": \"Novo título\",\r\n    \"Diretor\": \"Novo diretor\",\r\n    \"Genero\": \"Novo gênero\",\r\n    \"Duracao\": 345,\r\n    \"ClassificacaoEtaria\": 13\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:5000/filme/5",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme",
+												"5"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:04:57 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					],
+					"description": "Request relacionados á manipulação de filmes. Cada filme pode ser criado independente de outras entidades."
+				},
+				{
+					"name": "Sessão",
+					"item": [
+						{
+							"name": "Criar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CinemaFK\": 3,\r\n    \"FilmeFK\": 4,\r\n    \"HorarioDeEncerramento\": \"2002-01-01T21:00:00Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/sessao",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"sessao"
+									]
+								},
+								"description": "| **Campo** | **Descrição** |\n| --- | --- |\n| `CinemaFK` | Foreign Key do cinema; |\n| `FilmeFK` | Foreign Key do filme; |\n| `HorarioDeEncerramento` | Horário de encerramento; |"
+							},
+							"response": [
+								{
+									"name": "Default",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Titulo\": \"Título do filme\",\r\n    \"Duracao\": 300,\r\n    \"ClassificacaoEtaria\": 12,\r\n    \"Diretor\": \"Diretor do filme\",\r\n    \"Genero\": \"Genero\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:5000/filme",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Criado com sucesso",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Titulo\": \"Título do filme\",\r\n    \"Duracao\": 300,\r\n    \"ClassificacaoEtaria\": 12,\r\n    \"Diretor\": \"Diretor do filme\",\r\n    \"Genero\": \"Genero\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:5000/filme",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:43:49 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Location",
+											"value": "https://localhost:5001/Filme/7"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 7,\n    \"titulo\": \"Título do filme\",\n    \"diretor\": \"Diretor do filme\",\n    \"genero\": \"Genero\",\n    \"duracao\": 300,\n    \"classificacaoEtaria\": 12\n}"
+								}
+							]
+						},
+						{
+							"name": "Resgatar",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/sessao",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"sessao"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Resgatado com sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:5000/filme",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme"
+											],
+											"query": [
+												{
+													"key": "ClassificacaoEtaria",
+													"value": "{{classificacaoEtaria}}",
+													"description": "Faixa etária",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:35:39 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 4,\n        \"titulo\": \"StarWars\",\n        \"diretor\": \"Amanda\",\n        \"genero\": \"Scifi\",\n        \"duracao\": 300,\n        \"classificacaoEtaria\": 18\n    },\n    {\n        \"id\": 5,\n        \"titulo\": \"A culpa é das estrelas\",\n        \"diretor\": \"Andriele\",\n        \"genero\": \"Romance\",\n        \"duracao\": 300,\n        \"classificacaoEtaria\": 14\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Resgatar por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/sessao/3",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"sessao",
+										"3"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Resgatado com sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:5000/filme/5",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme",
+												"5"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:47:09 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 5,\n    \"titulo\": \"A culpa é das estrelas\",\n    \"diretor\": \"Andriele\",\n    \"genero\": \"Romance\",\n    \"duracao\": 300,\n    \"classificacaoEtaria\": 14\n}"
+								}
+							]
+						},
+						{
+							"name": "Deletar",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/sessao/3",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"sessao",
+										"3"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Deletado com sucesso",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:5000/filme/5",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme",
+												"5"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:35:11 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Atualizar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CinemaFK\": 3,\r\n    \"FilmeFK\": 4,\r\n    \"HorarioDeEncerramento\": \"2002-01-01T21:00:00Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/sessao/11",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"sessao",
+										"11"
+									]
+								},
+								"description": "| **Campo** | **Descrição** |\n| --- | --- |\n| `CinemaFK` | Foreign Key do cinema; |\n| `FilmeFK` | Foreign Key do filme; |\n| `HorarioDeEncerramento` | Horário de encerramento; |"
+							},
+							"response": [
+								{
+									"name": "Atualizado com sucesso",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Titulo\": \"Novo título\",\r\n    \"Diretor\": \"Novo diretor\",\r\n    \"Genero\": \"Novo gênero\",\r\n    \"Duracao\": 345,\r\n    \"ClassificacaoEtaria\": 13\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:5000/filme/5",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme",
+												"5"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:04:57 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Gerente",
+					"item": [
+						{
+							"name": "Criar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Nome\": \"Nome do gerente\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/gerente",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"gerente"
+									]
+								},
+								"description": "| **Campo** | **Descrição** |\n| --- | --- |\n| `Nome` | Nome do gerente;; |"
+							},
+							"response": [
+								{
+									"name": "Default",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Titulo\": \"Título do filme\",\r\n    \"Duracao\": 300,\r\n    \"ClassificacaoEtaria\": 12,\r\n    \"Diretor\": \"Diretor do filme\",\r\n    \"Genero\": \"Genero\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:5000/filme",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Criado com sucesso",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Nome\": \"Nome do gerente\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/gerente",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"gerente"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 12:38:18 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Location",
+											"value": "https://localhost:5001/Gerente/1"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"nome\": \"Nome do gerente\",\n    \"cinemas\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Resgatar",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/gerente",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"gerente"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Resgatado com sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/gerente",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"gerente"
+											],
+											"query": [
+												{
+													"key": "ClassificacaoEtaria",
+													"value": "{{classificacaoEtaria}}",
+													"description": "Faixa etária",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 12:39:54 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"nome\": \"Nome do gerente\",\n        \"cinemas\": []\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Resgatar por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/gerente/{{id}}",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"gerente",
+										"{{id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Resgatado com sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/gerente/{{id}}",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"gerente",
+												"{{id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 12:40:52 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"nome\": \"Nome do gerente\",\n    \"cinemas\": []\n}"
+								}
+							]
+						},
+						{
+							"name": "Deletar",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/filme/2",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"filme",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Deletado com sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": []
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "",
+									"header": [
+										{}
+									],
+									"cookie": [
+										{
+											"expires": "Invalid Date"
+										}
+									],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Atualizar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Nome\": \"Novo nome\" \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/gerente/2",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"gerente",
+										"2"
+									]
+								},
+								"description": "| **Campo** | **Descrição** |\n| --- | --- |\n| `Nome` | Novo nome do gerente; |"
+							},
+							"response": [
+								{
+									"name": "Atualizado com sucesso",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Titulo\": \"Novo título\",\r\n    \"Diretor\": \"Novo diretor\",\r\n    \"Genero\": \"Novo gênero\",\r\n    \"Duracao\": 345,\r\n    \"ClassificacaoEtaria\": 13\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/filme/{{id}}",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"filme",
+												"{{id}}"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:04:57 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Cinema",
+					"item": [
+						{
+							"name": "Criar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Nome\": \"Título do cinema\",\r\n    \"EnderecoFK\": 3,\r\n    \"GerenteFK\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/cinema",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"cinema"
+									]
+								},
+								"description": "| **Campo** | **Descrição** |\n| --- | --- |\n| `Nome` | Nome do cinema; |\n| `EnderecoFK` | Foreign Key (id) do endereço; |\n| `GerenteFK` | Foreign Key (id) do gerente; |"
+							},
+							"response": [
+								{
+									"name": "Default",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Titulo\": \"Título do filme\",\r\n    \"Duracao\": 300,\r\n    \"ClassificacaoEtaria\": 12,\r\n    \"Diretor\": \"Diretor do filme\",\r\n    \"Genero\": \"Genero\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:5000/filme",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Criado com sucesso",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Titulo\": \"Título do filme\",\r\n    \"Duracao\": 300,\r\n    \"ClassificacaoEtaria\": 12,\r\n    \"Diretor\": \"Diretor do filme\",\r\n    \"Genero\": \"Genero\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:5000/filme",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"filme"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:43:49 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Location",
+											"value": "https://localhost:5001/Filme/7"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 7,\n    \"titulo\": \"Título do filme\",\n    \"diretor\": \"Diretor do filme\",\n    \"genero\": \"Genero\",\n    \"duracao\": 300,\n    \"classificacaoEtaria\": 12\n}"
+								}
+							]
+						},
+						{
+							"name": "Resgatar",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/filme",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"filme"
+									],
+									"query": [
+										{
+											"key": "ClassificacaoEtaria",
+											"value": "{{classificacaoEtaria}}",
+											"description": "Faixa etária",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Resgatado com sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/cinema",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"cinema"
+											],
+											"query": [
+												{
+													"key": "ClassificacaoEtaria",
+													"value": "{{classificacaoEtaria}}",
+													"description": "Faixa etária",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 13:33:45 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"nome\": \"Título do filme\",\n        \"endereco\": {\n            \"id\": 2,\n            \"logradouro\": \"Teste de endereço\"\n        },\n        \"gerente\": {\n            \"id\": 2,\n            \"nome\": \"Andriele\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"nome\": \"Título do cinema\",\n        \"endereco\": {\n            \"id\": 3,\n            \"logradouro\": \"Nome da rua\"\n        },\n        \"gerente\": {\n            \"id\": 3,\n            \"nome\": \"Jorge\"\n        }\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Resgatar por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/cinema/1",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"cinema",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Resgatado com sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/cinema/1",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"cinema",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 13:40:13 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"nome\": \"Título do filme\",\n    \"endereco\": {\n        \"id\": 2,\n        \"logradouro\": \"Teste de endereço\"\n    },\n    \"gerente\": {\n        \"id\": 2,\n        \"nome\": \"Andriele\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Deletar",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/cinema/{{id}}",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"cinema",
+										"{{id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Deletado com sucesso",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/filme/{{id}}",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"filme",
+												"{{id}}"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:35:11 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Atualizar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Nome\": \"Novo título do cinema\",\r\n    \"EnderecoFK\": 2,\r\n    \"GerenteFK\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/cinema/{{id}}",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"cinema",
+										"{{id}}"
+									]
+								},
+								"description": "| **Campo** | **Descrição** |\n| --- | --- |\n| `Nome` | Nome do cinema; |\n| `EnderecoFK` | Foreign Key (id) do endereço; |\n| `GerenteFK` | Foreign Key (id) do gerente; |"
+							},
+							"response": [
+								{
+									"name": "Atualizado com sucesso",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Titulo\": \"Novo título\",\r\n    \"Diretor\": \"Novo diretor\",\r\n    \"Genero\": \"Novo gênero\",\r\n    \"Duracao\": 345,\r\n    \"ClassificacaoEtaria\": 13\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/filme/{{id}}",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"filme",
+												"{{id}}"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 11:04:57 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Endereço",
+					"item": [
+						{
+							"name": "Criar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Logradouro\": \"Nome da rua\",\r\n    \"Bairro\": \"Bairo\",\r\n    \"Numero\": 12\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/endereco",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"endereco"
+									]
+								},
+								"description": "| **Campo** | **Descrição** |\n| --- | --- |\n| `Logradouro` | Nome da rua; |\n| `Bairro` | Bairro do cinema; |\n| `Número` | Número do local; |"
+							},
+							"response": [
+								{
+									"name": "Default",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Logradouro\": \"Nome da rua\",\r\n    \"Bairro\": \"Bairo\",\r\n    \"Numero\": 12\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/endereco",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"endereco"
+											]
+										}
+									},
+									"_postman_previewlanguage": "",
+									"header": [
+										{}
+									],
+									"cookie": [
+										{
+											"expires": "Invalid Date"
+										}
+									],
+									"body": ""
+								},
+								{
+									"name": "Criado com sucesso",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Logradouro\": \"Nome da rua\",\r\n    \"Bairro\": \"Bairo\",\r\n    \"Numero\": 12\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/endereco",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"endereco"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 12:17:50 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Location",
+											"value": "https://localhost:5001/Endereco/2"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 2,\n    \"logradouro\": \"Nome da rua\",\n    \"bairro\": \"Bairo\",\n    \"numero\": 12\n}"
+								}
+							]
+						},
+						{
+							"name": "Resgatar",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/endereco",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"endereco"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Resgatado com sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/endereco",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"endereco"
+											],
+											"query": [
+												{
+													"key": "ClassificacaoEtaria",
+													"value": "{{classificacaoEtaria}}",
+													"description": "Faixa etária",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 12:18:52 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"logradouro\": \"25 de julho\",\n        \"bairro\": \"Vargas\",\n        \"numero\": 12\n    },\n    {\n        \"id\": 2,\n        \"logradouro\": \"Nome da rua\",\n        \"bairro\": \"Bairo\",\n        \"numero\": 12\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Resgatar por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/endereco/{{id}}",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"endereco",
+										"{{id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Resgatado com sucesso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/endereco/2",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"endereco",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 12:25:36 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 2,\n    \"logradouro\": \"Nome da rua\",\n    \"bairro\": \"Bairo\",\n    \"numero\": 12\n}"
+								}
+							]
+						},
+						{
+							"name": "Deletar",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/endereco/1",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"endereco",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Deletado com sucesso",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/endereco/1",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"endereco",
+												"1"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 12:28:53 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Atualizar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Logradouro\": \"Novo nome da rua\",\r\n    \"Bairro\": \"Novo bairo\",\r\n    \"Numero\": 12\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sistema_de_cinemas_URL}}/endereco/2",
+									"host": [
+										"{{sistema_de_cinemas_URL}}"
+									],
+									"path": [
+										"endereco",
+										"2"
+									]
+								},
+								"description": "| **Campo** | **Descrição** |\n| --- | --- |\n| `Logradouro` | Nome da rua; |\n| `Bairro` | Bairro do cinema; |\n| `Número` | Número do local; |"
+							},
+							"response": [
+								{
+									"name": "Atualizado com sucesso",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Logradouro\": \"Novo nome da rua\",\r\n    \"Bairro\": \"Novo bairo\",\r\n    \"Numero\": 12\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{sistema_de_cinemas_URL}}/endereco/2",
+											"host": [
+												"{{sistema_de_cinemas_URL}}"
+											],
+											"path": [
+												"endereco",
+												"2"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 22 Dec 2022 12:30:32 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				}
+			],
+			"description": "API de gerenciamento de sessões de cinema e seus filmes."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "5",
+			"type": "string"
+		},
+		{
+			"key": "sistema_de_cinemas_URL",
+			"value": "localhost:5000",
+			"type": "string"
+		}
+	]
+}
