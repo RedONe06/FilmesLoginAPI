@@ -12,14 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ContatoService, ContatoService>();
-builder.Services.AddScoped<CadastroService, CadastroService>();
-builder.Services.AddScoped<EmailService, EmailService>();
-builder.Services.AddScoped<TokenService, TokenService>();
-builder.Services.AddScoped<LoginService, LoginService>();
-builder.Services.AddScoped<LogoutService, LogoutService>();
-
-
+builder.Configuration.AddUserSecrets<Program>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<UserDbContext>(opts => opts
 .UseLazyLoadingProxies()
@@ -28,6 +21,13 @@ builder.Services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(
     opts => opts.SignIn.RequireConfirmedEmail = true)
     .AddEntityFrameworkStores<UserDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<ContatoService, ContatoService>();
+builder.Services.AddScoped<CadastroService, CadastroService>();
+builder.Services.AddScoped<EmailService, EmailService>();
+builder.Services.AddScoped<TokenService, TokenService>();
+builder.Services.AddScoped<LoginService, LoginService>();
+builder.Services.AddScoped<LogoutService, LogoutService>();
 
 var app = builder.Build();
 
