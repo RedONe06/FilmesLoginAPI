@@ -70,3 +70,12 @@ C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\obj\Debug\net6.0\refint\API
 C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\obj\Debug\net6.0\API Filme.pdb
 C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\obj\Debug\net6.0\API Filme.genruntimeconfig.cache
 C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\obj\Debug\net6.0\ref\API Filme.dll
+C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\Andriele\Downloads\Alura\API Login\APIFilme\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll

@@ -9,27 +9,32 @@ namespace API_Login.Services
 {
     public class TokenService
     {
-        public Token CreateToken(IdentityUser<int> usuarioIdentity)
+        public Token CreateToken(IdentityUser<int> usuarioIdentity, string role)
         {
             Claim[] direitosUsuario = new Claim[]
             {
-                new Claim("username", usuarioIdentity.UserName),
-                new Claim("id", usuarioIdentity.Id.ToString())
+                new Claim(ClaimTypes.Name, usuarioIdentity.UserName),
+                new Claim("id", usuarioIdentity.Id.ToString()),
+                new Claim(ClaimTypes.Role, "manager")
             };
 
-            var chave = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("0asdjas09djsa09djasdjsadajsd09asjd09sajcnzxn"));
+            var chave = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("hello world hello world hello world"));
 
-            var credenciais = new SigningCredentials(chave, SecurityAlgorithms.HmacSha256);
+            var credenciais = new SigningCredentials(chave, SecurityAlgorithms.HmacSha256Signature);
 
-            var token = new JwtSecurityToken(
-                claims: direitosUsuario,
-                signingCredentials: credenciais,
-                expires: DateTime.UtcNow.AddHours(1)
-                );
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(direitosUsuario),
+                SigningCredentials = credenciais,
+                Expires = DateTime.UtcNow.AddHours(2)
 
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
 
             return new Token(tokenString);
-        }
     }
+}
 }

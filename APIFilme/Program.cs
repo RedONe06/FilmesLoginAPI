@@ -3,6 +3,9 @@ using API_Filme.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using API_Gerente.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +25,22 @@ builder.Services.AddScoped<FilmeService, FilmeService>();
 builder.Services.AddScoped<EnderecoService, EnderecoService>();
 builder.Services.AddScoped<GerenteService, GerenteService>();
 builder.Services.AddScoped<SessaoService, SessaoService>();
-
+builder.Services.AddAuthentication(auth =>
+{
+    auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(token =>
+{
+    token.RequireHttpsMetadata = false;
+    token.SaveToken = true;
+    token.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("hello world hello world hello world")),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
 
 var app = builder.Build();
 
@@ -30,11 +48,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
 }
-
+app.UseRouting();
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
 app.MapControllers();
+app.UseAuthorization();
+app.UseAuthentication();
 
 app.Run();
